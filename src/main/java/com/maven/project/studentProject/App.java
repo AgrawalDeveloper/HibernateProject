@@ -18,20 +18,23 @@ public class App
       lp.setLid(12);
       lp.setLname("Samsung");
       
+      
       Student st=new Student();
       st.setName("Mona");
       st.setRollno(123);
       st.setMarks(98);
       st.getLaptop().add(lp);
       
+      lp.setStudent(st);
+      
       Configuration con=new Configuration().configure().addAnnotatedClass(Student.class).addAnnotatedClass(Laptop.class);
       ServiceRegistry req=new ServiceRegistryBuilder().applySettings(con.getProperties()).buildServiceRegistry();
       SessionFactory sf=con.buildSessionFactory(req);
       Session session=sf.openSession();
       Transaction tx=session.beginTransaction();
-      //session.save(lp);
-      session.save(st);
       session.save(lp);
+      session.save(st);
+      
       tx.commit();
     }
 }
