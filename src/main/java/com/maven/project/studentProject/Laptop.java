@@ -2,6 +2,7 @@ package com.maven.project.studentProject;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Laptop {
@@ -9,6 +10,8 @@ public class Laptop {
 	@Id
 	private int lid;
 	private String lname;
+	@ManyToOne
+	private Student student;
 	public int getLid() {
 		return lid;
 	}
